@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Int</title>
+  <script>
+    // Set the API URL
+    const apiUrl = 'https://roo00kie.pythonanywhere.com/random_int';
+
+    // Set the interval to call the API every 2 seconds
+    setInterval(() => {
+      // Make a GET request to the API
+      fetch(apiUrl)
+        .then(response => response.text())
+        .then(data => {
+          // Update the page with the new random int
+          document.getElementById('random-int').innerText = data;
+        })
+        .catch(error => console.error('Error:', error));
+    }, 2000);
+  </script>
+</head>
+<body>
+  <h1>Random Int:</h1>
+  <p id="random-int"></p>
+</body>
+</html>
