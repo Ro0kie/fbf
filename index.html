@@ -4,7 +4,7 @@
   <title>Random Int</title>
   <script>
     // Set the API URL
-    const apiUrl = 'https://roo00kie.pythonanywhere.com/random_int?callback=?';
+    const apiUrl = 'https://roo00kie.pythonanywhere.com/random_int?callback=jsonpCallback';
 
     // Set the interval to call the API every 2 seconds
     setInterval(() => {
@@ -12,6 +12,7 @@
       const script = document.createElement('script');
       script.src = apiUrl;
       document.head.appendChild(script);
+      console.log('Added script tag:', script);
     }, 2000);
   </script>
 </head>
@@ -21,6 +22,7 @@
   <script>
     // Define the JSONP callback function
     function jsonpCallback(data) {
+      console.log('JSONP callback called with:', data);
       document.getElementById('random-int').innerText = data;
     }
   </script>
