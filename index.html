@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Content Viewer</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Mobile View</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="content-viewer">
-        <iframe id="contentFrame" src="https://hostloc.com/thread-1326258-1-1.html" frameborder="0"></iframe>
-    </div>
-    <div class="rating">
-        <button onclick="rate(1)">1 Star</button>
-        <button onclick="rate(2)">2 Stars</button>
-        <button onclick="rate(3)">3 Stars</button>
-        <button onclick="rate(4)">4 Stars</button>
-        <button onclick="rate(5)">5 Stars</button>
-    </div>
-    <script src="script.js"></script>
+    <iframe id="mobileFrame" src="https://hostloc.com/thread-1326258-1-1.html"></iframe>
+    <script>
+        const setMobileView = () => {
+            const mobileFrame = document.getElementById('mobileFrame');
+            // Change the user agent to a mobile one
+            mobileFrame.contentWindow.navigator.__defineGetter__('userAgent', function(){
+                return 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1';
+            });
+        };
+        window.onload = setMobileView;
+    </script>
 </body>
 </html>
